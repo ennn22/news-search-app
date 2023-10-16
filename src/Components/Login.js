@@ -1,16 +1,20 @@
-import { useState, useNavigate } from 'react';
-import { Box, Container, Grid, TextField, Typography } from '@mui/material/';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Alert, Box, Container, Grid, Snackbar, TextField, Typography } from '@mui/material/';
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const navigate = useNavigate();
 
+  //Validation
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // if (isLoggedIn) 
-    //   return navigate('/home');
+    if (username === "John" && password === "12345") {
+      setLoginSuccess(true)
+      navigate("/home")
+    };
   };
 
   return (
@@ -28,7 +32,7 @@ const Login = () => {
           alignItems="center">
           <Grid item xs={6}>
             <TextField
-              id="standard-basic"
+              id="standard-basic username"
               label="Username"
               type="text"
               name="username"
@@ -39,21 +43,21 @@ const Login = () => {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              id="standard-basic"
+              id="standard-basic password"
               label="Password"
               type="password"
               name="password"
-
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               margin="dense"
             />
           </Grid>
         </Grid>
-      </form>
-      <div className='loginButton'>
+        <div className='loginButton'>
         <button type="submit">Login</button>
-      </div>
+        {loginSuccess && <Alert severity="success">You've successfully logged in!</Alert>}
+        </div>
+      </form>
     </div>
   )
 }
