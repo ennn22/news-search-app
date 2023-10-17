@@ -1,20 +1,28 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Box, Container, Grid, Snackbar, TextField, Typography } from '@mui/material/';
+import { Box, Grid, LinearProgress, TextField, Typography } from '@mui/material/';
 
-const Login = () => {
-  const [username, setUsername] = useState("");
+const Login = ({ setSuccessAlert, setErrorAlert }) => {
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [isLoginInProgress, setIsLoginInProgress] = useState(false);
   const navigate = useNavigate();
 
   //Validation
-  const handleLogin = (e) => {
+  const handleLogin =  (e) => {
     e.preventDefault();
-    if (username === "John" && password === "12345") {
-      setLoginSuccess(true)
-      navigate("/home")
-    };
+    setIsLoginInProgress(true);
+
+    setTimeout(() => {
+      setIsLoginInProgress(false);
+      
+      if (userName === "John" && password === "12345") {
+        setSuccessAlert("You've successfully logged in!")
+        navigate("/home");
+      } else {
+        setErrorAlert("Invalid username or password")
+      }
+    }, 1000);
   };
 
   return (
@@ -23,6 +31,7 @@ const Login = () => {
         <Typography variant="h2">Daily News</Typography>
         <Typography variant="h4" sx={{ fontWeight: '600' }}>Login</Typography>
       </Box>
+      
       <form className="loginBox" onSubmit={handleLogin}>
         <Grid 
           container 
@@ -36,8 +45,8 @@ const Login = () => {
               label="Username"
               type="text"
               name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               margin="dense"
             />
           </Grid>
@@ -54,14 +63,18 @@ const Login = () => {
           </Grid>
         </Grid>
         <div className='loginButton'>
-        <button type="submit">Login</button>
-        {loginSuccess && <Alert severity="success">You've successfully logged in!</Alert>}
+          <button type="submit" disabled={isLoginInProgress}>
+            {isLoginInProgress ? 'Logging in...' : 'Login'}
+          </button>
+          {isLoginInProgress && (
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
+          )}
         </div>
       </form>
     </div>
   )
 }
-
-
 
 export default Login;

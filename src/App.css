@@ -28,9 +28,11 @@ body {
 }
 
 .loginButton button {
+  min-width: 150px;
   font-size: 16px;
   font-weight: 600;
   padding: 10px 20px;
+  margin-bottom: 10px;
   background-color: #6cb5cb;
   color: #fbf5ef;
   border-style: none;
@@ -38,3 +40,4 @@ body {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
+

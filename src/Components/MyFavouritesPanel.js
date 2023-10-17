@@ -1,4 +1,6 @@
-const MyFavouritesPanel = () => {}
+const MyFavouritesPanel = () => {
+  
+}
 
 
 export default MyFavouritesPanel;
