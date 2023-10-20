@@ -4,40 +4,82 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color-1: #6cb5cb;
+  --bg-color-2: #fbf5ef;
+  --font-color-1: #6cb5cb;
+  --font-color-2: #fbf5ef;
+
+}
+
 body {
   background-color: #6cb5cb;
 }
 
-.loginBigBox {
+.login-big-box {
   margin: 200px auto;
-  background-color: #fbf5ef;
-  color: #6cb5cb;
+  background-color: var(--bg-color-2);
+  color: var(--font-color-1);
   width: 60vw;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.loginHeader {
+.login-header {
   text-align: center;
   padding: 20px;
 }
 
-.loginButton {
+.login-button {
   text-align: center;
   padding: 20px;
 }
 
-.loginButton button {
+.login-button button {
   min-width: 150px;
   font-size: 16px;
   font-weight: 600;
   padding: 10px 20px;
   margin-bottom: 10px;
-  background-color: #6cb5cb;
-  color: #fbf5ef;
+  background-color: var(--bg-color-1);
+  color: var(--font-color-2);
   border-style: none;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
+.header-navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-color-2);
+  padding: 15px;
+}
+
+.header-navbar h4 {
+  color: var(--font-color-1);
+}
+
+.user-details {
+  display: flex;
+}
+
+.main-container {
+  border: 1px solid red;
+}
+
+.header-container {
+  border: 1px solid green;
+}
+
+.content-container {
+  border: 1px solid yellow;
+}
+
+.left-panel-container {
+  border: 1px solid blue;
+}
+
+.result-container {
+  border: 1px solid black;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Grid, LinearProgress, TextField, Typography } from '@mui/material/';
+import { useNewsContext } from '../Context/NewsContext';
 
 const Login = ({ setSuccessAlert, setErrorAlert }) => {
   const [userName, setUserName] = useState("");
@@ -26,13 +27,13 @@ const Login = ({ setSuccessAlert, setErrorAlert }) => {
   };
 
   return (
-    <div className='loginBigBox'>
-      <Box className='loginHeader'>
-        <Typography variant="h2">Daily News</Typography>
+    <div className='login-big-box'>
+      <Box className='login-header'>
+        <Typography variant="h2">Find My News ;)</Typography>
         <Typography variant="h4" sx={{ fontWeight: '600' }}>Login</Typography>
       </Box>
       
-      <form className="loginBox" onSubmit={handleLogin}>
+      <form className="login-box" onSubmit={handleLogin}>
         <Grid 
           container 
           spacing={2} 
@@ -62,7 +63,7 @@ const Login = ({ setSuccessAlert, setErrorAlert }) => {
             />
           </Grid>
         </Grid>
-        <div className='loginButton'>
+        <div className='login-button'>
           <button type="submit" disabled={isLoginInProgress}>
             {isLoginInProgress ? 'Logging in...' : 'Login'}
           </button>
