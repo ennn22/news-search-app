@@ -1,25 +1,27 @@
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Grid, IconButton, Typography } from '@mui/material/';
+import { pink, grey } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const NewsItem = ({ newsItem, updateMyFavourites }) => {
-  console.log(newsItem);
-  const websiteUrl = newsItem.url;
-  const websiteName = websiteUrl.split('https://').pop().split('/')[0];
-
+const NewsItem = ({ newsItem, updateMyFavourites, isFavourite }) => {
+  const source = newsItem.source;
   const date = Date(newsItem.publishedAt).toString().split(" ");
-  console.log(date);
-  console.log(typeof(date));
+
+  const handleFavourites = () => {
+    if (!isFavourite) {
+      updateMyFavourites(newsItem);
+    }
+  };
 
   return (
-    <Grid>
-      <Card sx={{ maxWidth: 345 }}>
+    <Grid sx={{ height: "100%" }}>
+      <Card sx={{ height: "100%", maxWidth: 345 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              R
+            <Avatar sx={{ bgcolor: "orange" }} aria-label="avatar">
+              {source.name[0]}
             </Avatar>
           }
-          title={websiteName}
+          title={source.name}
           subheader={date.slice(1, 4).join(' ')}
         />
         <CardMedia
@@ -34,8 +36,12 @@ const NewsItem = ({ newsItem, updateMyFavourites }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon onclick={updateMyFavourites}/>
+          <IconButton 
+            sx={{ color: isFavourite ? pink[500] : grey[400] }}
+            aria-label="add to favorites" 
+            onClick={handleFavourites}
+          >
+            <FavoriteIcon />
           </IconButton>
       </CardActions>
       </Card>

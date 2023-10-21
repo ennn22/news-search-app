@@ -6,9 +6,10 @@ const Header = ({ keyWord, handleSetKeyWord }) => {
   const [userName, setUserName] = useState("John");
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
+  // const [keyword, setKeyword] = useState("");
 
   const handleSearch = () => {
-    handleSetKeyWord(document.getElementById('searchNewsInput').value);
+    handleSetKeyWord(document.getElementById('searchInput').value);
   };
 
   const handleLogout = () => {

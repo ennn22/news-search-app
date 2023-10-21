@@ -5,15 +5,16 @@
 }
 
 :root {
-  --bg-color-1: #6cb5cb;
-  --bg-color-2: #fbf5ef;
-  --font-color-1: #6cb5cb;
-  --font-color-2: #fbf5ef;
-
+  --bg-color-1: #0c4a6e;
+  --bg-color-2: #fafaf9;
+  --bg-color-3: #b45309;
+  --font-color-1: #075985;
+  --font-color-2: #fafaf9;
+  --font-color-3: #b45309;
 }
 
 body {
-  background-color: #6cb5cb;
+  background-color: var(--bg-color-1);
 }
 
 .login-big-box {
@@ -30,6 +31,10 @@ body {
   padding: 20px;
 }
 
+.login-header h4 {
+  color: var(--font-color-3);
+}
+
 .login-button {
   text-align: center;
   padding: 20px;
@@ -41,7 +46,7 @@ body {
   font-weight: 600;
   padding: 10px 20px;
   margin-bottom: 10px;
-  background-color: var(--bg-color-1);
+  background-color: var(--bg-color-3);
   color: var(--font-color-2);
   border-style: none;
   border-radius: 10px;
@@ -64,22 +69,40 @@ body {
   display: flex;
 }
 
-.main-container {
-  border: 1px solid red;
+.myfavourites-box {
+  padding: 20px;
 }
 
-.header-container {
-  border: 1px solid green;
+.myfavourites-header {
+  text-align: center;
+  color: var(--font-color-2);
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.content-container {
-  border: 1px solid yellow;
+.myfavourites-item li {
+  list-style: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: var(--bg-color-2);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.left-panel-container {
-  border: 1px solid blue;
+.myfavourites-item li a {
+  text-decoration: none;
+  color: var(--font-color-3);
+}
+
+.clear-btn {
+  text-align: center;
+}
+
+.clear-btn button {
+  cursor: pointer;
 }
 
 .result-container {
-  border: 1px solid black;
+  padding: 20px;
 }
