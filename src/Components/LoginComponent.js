@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Grid, LinearProgress, TextField, Typography } from '@mui/material/';
-import { useNewsContext } from '../Context/NewsContext';
 
 const Login = ({ setSuccessAlert, setErrorAlert }) => {
   const [userName, setUserName] = useState("");

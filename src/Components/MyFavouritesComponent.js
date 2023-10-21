@@ -1,4 +1,5 @@
-import { Button, Grid, Typography } from '@mui/material/';
+import { Grid, Typography } from '@mui/material/';
+import OrangeButton from './OrangeButton';
 
 const MyFavouritesPanel = ({ myFavourites, clearMyFavourites }) => {
 
@@ -19,9 +20,9 @@ const MyFavouritesPanel = ({ myFavourites, clearMyFavourites }) => {
           </ul>
         </Grid>
         <Grid className='clear-btn'item xs={12}>
-          <Button size="large" variant="contained" color="primary" onClick={clearMyFavourites}>
+          <OrangeButton size="large" onClick={clearMyFavourites}>
             Clear
-          </Button>
+          </OrangeButton>
         </Grid>
       </Grid>
     );

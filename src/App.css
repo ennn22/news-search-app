@@ -17,6 +17,11 @@ body {
   background-color: var(--bg-color-1);
 }
 
+a {
+  text-decoration: none;
+  color: initial;
+}
+
 .login-big-box {
   margin: 200px auto;
   background-color: var(--bg-color-2);
@@ -58,15 +63,21 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: var(--bg-color-2);
-  padding: 15px;
+  padding: 20px 60px;
+  max-height: 100px;
 }
 
 .header-navbar h4 {
   color: var(--font-color-1);
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
-.user-details {
-  display: flex;
+.search-bar button {
+  margin-left: 10px;
+}
+
+.user-details button {
+  margin-left: 10px;
 }
 
 .myfavourites-box {
@@ -105,4 +116,11 @@ body {
 
 .result-container {
   padding: 20px;
+}
+
+.text-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

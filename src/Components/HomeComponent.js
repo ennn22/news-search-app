@@ -17,8 +17,16 @@ const Home = () => {
     setKeyWord(keyWord)
   };
 
-  const updateMyFavourites = (newsItem) => {
+  const addMyFavourites = (newsItem) => {
     setMyFavourites([...myFavourites, newsItem]);
+  };
+
+  const removeMyFavourites = (newsItem) => {
+    const updateMyFavourites = 
+      myFavourites.filter((favourite) => {
+        return favourite.url !== newsItem.url
+      });
+    setMyFavourites(updateMyFavourites);
   };
 
   useEffect(() => {
@@ -47,7 +55,8 @@ const Home = () => {
             <DisplayResultsComponent
               keyWord={keyWord}
               myFavourites={myFavourites}
-              updateMyFavourites={updateMyFavourites}
+              addMyFavourites={addMyFavourites}
+              removeMyFavourites={removeMyFavourites}
               ></DisplayResultsComponent>
           </Grid>
         </Grid>

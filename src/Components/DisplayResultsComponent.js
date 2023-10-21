@@ -4,7 +4,7 @@ import NewsItemComponent from './NewsItemComponent';
 import axios from 'axios';
 import api from '../Api/articles';
 
-const DisplayResults = ({ keyWord, updateMyFavourites, myFavourites }) => {
+const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavourites }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [newsItems, setNewsItems] = useState([]);
 
@@ -36,10 +36,11 @@ const DisplayResults = ({ keyWord, updateMyFavourites, myFavourites }) => {
   return (
     <Grid container rowSpacing={{ xs: 4, sm: 3, md: 3 }} columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 3 }} className='news-grid'>
       {newsItems.map((newsItem, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+        <Grid item xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
           <NewsItemComponent 
             newsItem={newsItem} 
-            updateMyFavourites={updateMyFavourites} 
+            addMyFavourites={addMyFavourites} 
+            removeMyFavourites={removeMyFavourites}
             isFavourite={myFavouritesIds.includes(newsItem.url)} 
           />
         </Grid>
