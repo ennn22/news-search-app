@@ -35,7 +35,7 @@ const Header = ({ keyWord, handleSetKeyWord }) => {
       </div>
       <div className="user-details">
         {userName && (
-          <Chip label={userName} size="large" variant="outlined" />
+          <Chip label={userName} size="large" color="primary" />
         )}
         <Button onClick={handleLogout} variant="outlined" color="secondary">
           Logout

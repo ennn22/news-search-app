@@ -2,36 +2,53 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, LinearProgress } from '@mui/material/';
 import NewsItemComponent from './NewsItemComponent';
 import axios from 'axios';
-import api from '../Api/articles';
+import OrangeButton from './OrangeButton';
+
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavourites }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [newsItems, setNewsItems] = useState([]);
+  const [pageNo, setPageNo] = useState(1)
 
-  const newsApiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=8136319e677b42e1aedf4b2ec8c47cbc`
-  const newsApiUrlWithKeyWord = `https://newsapi.org/v2/everything?apiKey=8136319e677b42e1aedf4b2ec8c47cbc&sortBy=publishedAt&q=${keyWord}&searchIn=title`
+  const pageSize = 10;
+
+  const newsApiUrl = `https://newsapi.org/v2/everything?q=keyword&apiKey=${apiKey}&pageSize=${pageSize}&page=${pageNo}`
+  const newsApiUrlWithKeyWord = `https://newsapi.org/v2/everything?apiKey=${apiKey}&sortBy=publishedAt&q=${keyWord}&searchIn=title${pageSize}&page=${pageNo}`
 
   // Retrieve News (from News Api)
-  const retrieveNews = async() => {
+  const retrieveNews = async () => {
     try {
-
-      if(keyWord==='') {
-        const news = await axios.get(newsApiUrl);
-        setNewsItems(news.data.articles);
+      let news;
+      if (keyWord==='') {
+        news = await axios.get(newsApiUrl);
       } else {
-        const news = await axios.get(newsApiUrlWithKeyWord);
-        setNewsItems(news.data.articles);
+        news = await axios.get(newsApiUrlWithKeyWord);
       }
-    } catch(e) {
-      console.log(e.message);
+      setNewsItems([...newsItems, ...news.data.articles]);
+      setPageNo(pageNo + 1);
+    } catch (e) {
+      console.log("error");
     }
   }
 
   useEffect(() => {
+    setPageNo(1);
     retrieveNews();
   }, [keyWord]);
 
   const myFavouritesIds = myFavourites.map((i) => i.url);
+
+  const handleLoadMore = async () => { 
+    try {
+      setIsLoading(true);
+      retrieveNews();
+    } catch (e) {
+      console.log("error", e);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   
   return (
     <Grid container rowSpacing={{ xs: 4, sm: 3, md: 3 }} columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 3 }} className='news-grid'>
@@ -46,20 +63,15 @@ const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavour
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Button
-          variant="contained"
-          color="primary"
-          // onClick={handleLoadMore}
-          // disabled={loading}
-        >
-          {/* {loading ? 'Loading...' : 'Load More'} */}
-        </Button>
+        <OrangeButton variant="contained" disabled={isLoading} onClick={handleLoadMore}>
+          {isLoading ? 'isLoading...' : 'Load More'}
+        </OrangeButton>
       </Grid>
-      {/* {loading && (
+      {isLoading && (
         <Grid item xs={12}>
           <LinearProgress />
         </Grid>
-      )} */}
+      )}
     </Grid>
   );
 };
