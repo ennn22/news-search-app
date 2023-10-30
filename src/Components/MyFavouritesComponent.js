@@ -5,7 +5,7 @@ import { orange } from '@mui/material/colors';
 const MyFavouritesPanel = ({ myFavourites, clearMyFavourites }) => {
 
   return (
-      <Grid className='myfavourites-box'container spacing={2} sx={{ height: "100%" }}>
+      <Grid className='myfavourites-box'container spacing={2}>
         <Grid className='myfavourites-header' item xs={12}>
           <Typography variant="h5" sx={{ fontWeight: 600 }}>My Favorites:</Typography>
           <Typography variant="h6" sx={{ color: orange[500], fontWeight: 600 }}>{myFavourites.length} Articles</Typography>

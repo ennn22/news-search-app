@@ -53,6 +53,7 @@ const Home = () => {
           </Grid>
           <Grid className='result-container' item xs={12} sm={12} md={9} lg={9.5}>
             <DisplayResultsComponent
+              key={keyWord}
               keyWord={keyWord}
               myFavourites={myFavourites}
               addMyFavourites={addMyFavourites}

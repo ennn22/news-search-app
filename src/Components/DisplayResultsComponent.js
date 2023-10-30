@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Grid, LinearProgress } from '@mui/material/';
+import { Grid, LinearProgress } from '@mui/material/';
 import NewsItemComponent from './NewsItemComponent';
 import axios from 'axios';
 import OrangeButton from './OrangeButton';
@@ -9,12 +9,14 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavourites }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [newsItems, setNewsItems] = useState([]);
-  const [pageNo, setPageNo] = useState(1)
+  const [pageNo, setPageNo] = useState(1);
 
   const pageSize = 10;
 
-  const newsApiUrl = `https://newsapi.org/v2/everything?q=keyword&apiKey=${apiKey}&pageSize=${pageSize}&page=${pageNo}`
-  const newsApiUrlWithKeyWord = `https://newsapi.org/v2/everything?apiKey=${apiKey}&sortBy=publishedAt&q=${keyWord}&searchIn=title${pageSize}&page=${pageNo}`
+  const newsApiUrl = 
+    `https://newsapi.org/v2/everything?q=keyword&apiKey=${apiKey}&pageSize=${pageSize}&page=${pageNo}`
+  const newsApiUrlWithKeyWord = 
+    `https://newsapi.org/v2/everything?apiKey=${apiKey}&sortBy=publishedAt&q=${keyWord}&searchIn=title&pageSize=${pageSize}&page=${pageNo}`
 
   // Retrieve News (from News Api)
   const retrieveNews = async () => {
@@ -26,20 +28,18 @@ const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavour
         news = await axios.get(newsApiUrlWithKeyWord);
       }
       setNewsItems([...newsItems, ...news.data.articles]);
-      setPageNo(pageNo + 1);
     } catch (e) {
       console.log("error");
+    } finally {
+      setPageNo(pageNo + 1);
     }
   }
-
+  
   useEffect(() => {
-    setPageNo(1);
     retrieveNews();
   }, [keyWord]);
 
-  const myFavouritesIds = myFavourites.map((i) => i.url);
-
-  const handleLoadMore = async () => { 
+  const handleLoadMore = async () => {
     try {
       setIsLoading(true);
       retrieveNews();
@@ -49,6 +49,8 @@ const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavour
       setIsLoading(false);
     }
   }
+
+  const myFavouritesIds = myFavourites.map((i) => i.url);
   
   return (
     <Grid container rowSpacing={{ xs: 4, sm: 3, md: 3 }} columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 3 }} className='news-grid'>
@@ -75,6 +77,5 @@ const DisplayResults = ({ keyWord, addMyFavourites, removeMyFavourites, myFavour
     </Grid>
   );
 };
-
 
 export default DisplayResults;

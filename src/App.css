@@ -137,7 +137,7 @@ a {
   }
 }
 
-@media only screen and (min-width: 768px ) {
+@media only screen and (max-width: 768px ) {
 
   .header-navbar {
     padding: 10px 20px;
@@ -156,7 +156,7 @@ a {
   }
 
   .myfavourites-box {
-    max-height: 30vh;
+    max-height: 50vw;
     overflow-y: scroll;
   }
 }
@@ -164,7 +164,7 @@ a {
 @media only screen and (max-width: 425px ) {
 
   .header-container {
-    min-height: 20vh;
+    min-height: 15vh;
   }
   .header-navbar {
     padding: 15px;
